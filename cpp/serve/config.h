@@ -23,6 +23,7 @@ class GenerationConfigNode : public Object {
   double temperature = 0.8;
   double top_p = 0.95;
   double repetition_penalty = 1.0;
+  bool ignore_eos = false;
 
   int max_tokens = 128;
   Array<String> stop_strs;

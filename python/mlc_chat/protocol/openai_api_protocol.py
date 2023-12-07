@@ -145,6 +145,7 @@ class ChatCompletionRequest(BaseModel):
     tools: Optional[List[ChatFunction]] = None
     tool_choice: Optional[Union[Literal["none", "auto"], Dict]] = None
     user: Optional[str] = None
+    ignore_eos: Optional[bool] = None
 
 
 class ChatCompletionResponseChoice(BaseModel):
@@ -220,7 +221,7 @@ def openai_api_get_generation_config(
 ) -> Dict[str, Any]:
     """Create the generation config from the given request."""
     kwargs: Dict[str, Any] = {}
-    arg_names = ["temperature", "top_p", "max_tokens"]
+    arg_names = ["temperature", "top_p", "max_tokens", "ignore_eos"]
     for arg_name in arg_names:
         kwargs[arg_name] = getattr(request, arg_name)
     if kwargs["max_tokens"] is None:
